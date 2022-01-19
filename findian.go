@@ -17,14 +17,17 @@ The program should print “Found!” for the following example entered strings,
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
 func main()  {
-    var x string
     fmt.Printf("Enter a string: ")
-    fmt.Scan(&x)
+    consoleScanner := bufio.NewScanner(os.Stdin)
+    consoleScanner.Scan()
+    x := consoleScanner.Text()
     x = strings.ToLower(x)
     if strings.HasPrefix(x, "i") && strings.HasSuffix(x, "n") && strings.Contains(x, "a") {
         fmt.Println("Found!")
