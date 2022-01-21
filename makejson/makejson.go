@@ -36,9 +36,15 @@ func main() {
     myMap["address"] = address
 
     // use Marshal() to create a JSON object from the map
-    jsonByteArray, _ := json.Marshal(myMap)
+    jsonByteArray, err := json.Marshal(myMap)
+    if err != nil {
+        fmt.Println(err)
+    }
 
     // print the JSON object
     fmt.Print("You entered: ")
-    os.Stdout.Write(jsonByteArray)
+    _, err1 := os.Stdout.Write(jsonByteArray)
+    if err1 != nil {
+        fmt.Println(err1)
+    }
 }
