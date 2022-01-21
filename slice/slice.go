@@ -28,6 +28,7 @@ func main() {
 
     // create an empty integer slice of size (length) 3
     slice := make([]int, initLen)
+    slice2 := make([]int, initLen)
 
     // setup a loop to accept user input
     for {
@@ -56,12 +57,15 @@ func main() {
         // adds the integer to the slice
         if ctr < initLen {
             slice[ctr] = i
+            copy(slice2, slice)
+            sort.Ints(slice2) // sorts the backup slice O(logN)
+            fmt.Println(slice2) // prints the contents of the slice in sorted order
             ctr++
         } else {
             slice = append(slice, i) // O(1)|O(n)
+            sort.Ints(slice) // sorts the slice O(logN)
+            fmt.Println(slice) // prints the contents of the slice in sorted order
         }
-
+            
     }
-    sort.Ints(slice) // sorts the slice O(logN)
-    fmt.Println(slice) // prints the contents of the slice in sorted order
 }
